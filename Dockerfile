@@ -1,4 +1,4 @@
-#iron/go image is an alpine image that has go tools in it
+#iron/go image is an alpine image that has go tools
 FROM iron/go:dev
 WORKDIR /app
 
