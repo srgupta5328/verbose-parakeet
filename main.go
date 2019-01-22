@@ -23,8 +23,10 @@ func Initialize() *mux.Router {
 	return router
 }
 
-func run() {
+func run() error {
 	router := Initialize()
 	fmt.Println("Running Service http://localhost:8080")
 	log.Fatal(http.ListenAndServe(":8080", router))
+
+	return nil
 }
