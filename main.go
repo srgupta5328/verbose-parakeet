@@ -13,13 +13,12 @@ func main() {
 }
 
 func HomeHandler(w http.ResponseWriter, r *http.Request) {
-	fmt.Fprintf(w, "Welcome to the Online Retail System")
+	fmt.Fprintf(w, "Welcome to the Employee Catalog")
 }
 
 func Initialize() *mux.Router {
 	router := mux.NewRouter()
 	router.HandleFunc("/", HomeHandler).Methods("GET")
-
 	return router
 }
 

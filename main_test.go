@@ -20,7 +20,7 @@ func TestHomeHandler(t *testing.T) {
 	HomeHandler(res, req)
 
 	got := res.Body.String()
-	want := "Welcome to the Online Retail System"
+	want := "Welcome to the Employee Catalog"
 
 	if got != want {
 		t.Errorf("Got: '%s', Want: '%s'", got, want)
