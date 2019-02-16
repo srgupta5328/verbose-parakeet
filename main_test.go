@@ -13,6 +13,14 @@ func TestInitialize(t *testing.T) {
 	}
 }
 
+func TestGenerateUUID(t *testing.T) {
+	t.Run("Generating a UUID", func(t *testing.T) {
+		got := generateUUID()
+		if got != "" {
+			t.Logf("Generated a uuid successfully: %s", got)
+		}
+	})
+}
 func TestHomeHandler(t *testing.T) {
 	req, _ := http.NewRequest("GET", "http://localhost:8080/", nil)
 	res := httptest.NewRecorder()
