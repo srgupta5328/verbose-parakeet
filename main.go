@@ -1,16 +1,12 @@
 package main
 
 import (
-	"database/sql"
-	"encoding/json"
-	"errors"
 	"fmt"
 	"log"
 	"net/http"
 
-	"github.com/satori/go.uuid"
-
 	"github.com/gorilla/mux"
+	"github.com/srgupta5328/verbose-parakeet/helpers"
 )
 
 func main() {
@@ -18,7 +14,8 @@ func main() {
 }
 
 func HomeHandler(w http.ResponseWriter, r *http.Request) {
-	fmt.Fprintf(w, "Welcome to the Employee Catalog")
+	msg := "Welcome to Employee Catalog"
+	helpers.RespondWithJson(w, 200, msg)
 }
 
 func Initialize() *mux.Router {
@@ -34,50 +31,4 @@ func run() error {
 
 	return nil
 
-}
-
-func generateUUID() string {
-	uuid, _ := uuid.NewV1()
-	id := uuid.String()
-	return id
-}
-
-func RespondWithJson(w http.ResponseWriter, code int, payload interface{}) {
-	response, _ := json.Marshal(payload)
-	w.Header().Set("Content-Type", "application/json")
-	w.WriteHeader(code)
-	w.Write(response)
-}
-
-type Error struct {
-	msg  string
-	code int
-}
-
-func ResponseWithError(w http.ResponseWriter, e Error) {
-	RespondWithJson(w, e.code, e.msg)
-}
-
-type Employee struct {
-	FirstName string `json:"first_name,omitempty"`
-	LastName  string `json:"last_name,omitempty"`
-	ID        string `json:"id,omitempty"`
-	Email     string `json:"email,omitempty"`
-	RoleName  string `json:"role_name,omitempty"`
-}
-
-func (e *Employee) createEmployee(db *sql.DB) error {
-	return errors.New("Not implemented yet")
-}
-
-func (e *Employee) updateEmployee(db *sql.DB) error {
-	return errors.New("Not implemented yet")
-}
-
-func (e *Employee) deleteEmployee(db *sql.DB) error {
-	return errors.New("Not implemented yet")
-}
-
-func (e *Employee) getEmployee(db *sql.DB) error {
-	return errors.New("Not implemented yet")
 }
