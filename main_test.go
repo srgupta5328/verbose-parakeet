@@ -21,6 +21,7 @@ func TestGenerateUUID(t *testing.T) {
 		}
 	})
 }
+
 func TestHomeHandler(t *testing.T) {
 	req, _ := http.NewRequest("GET", "http://localhost:8080/", nil)
 	res := httptest.NewRecorder()
