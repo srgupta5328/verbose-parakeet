@@ -7,6 +7,7 @@ import (
 
 	"github.com/gorilla/mux"
 	scribble "github.com/nanobox-io/golang-scribble"
+	"github.com/srgupta5328/verbose-parakeet/helpers"
 )
 
 func Initialize() *mux.Router {
@@ -19,18 +20,19 @@ func Initialize() *mux.Router {
 func Run() error {
 	router := Initialize()
 	fmt.Println("Running Service http://localhost:8080")
-	log.Fatal(http.ListenAndServe(":8080", router))
+	log.Fatal(http.ListenAndServe(":"+helpers.Port, router))
 
 	return nil
 
 }
 
-func InitDB() error {
+func InitDB() (*scribble.Driver, error) {
 	db, err := scribble.New("../test/employee.json", nil)
 	if err != nil {
-		fmt.Println(db)
 		fmt.Println("Error initializing the scribble db")
 	}
 
-	return nil
+	return db, nil
 }
+
+//DynamoDB -> For production
