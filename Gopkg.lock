@@ -14,6 +14,18 @@
   version = "v1.6.2"
 
 [[projects]]
+  branch = "master"
+  name = "github.com/jcelliott/lumber"
+  packages = ["."]
+  revision = "dd349441af25132d146d7095c6693a15431fc9b1"
+
+[[projects]]
+  branch = "master"
+  name = "github.com/nanobox-io/golang-scribble"
+  packages = ["."]
+  revision = "336beac0a992ed9abaf4ef8e7042ba7fe3335c06"
+
+[[projects]]
   name = "github.com/satori/go.uuid"
   packages = ["."]
   revision = "f58768cc1a7a7e77a3bd49e98cdd21419399b6a3"
@@ -22,6 +34,6 @@
 [solve-meta]
   analyzer-name = "dep"
   analyzer-version = 1
-  inputs-digest = "aaccef8d50c98eafbdecff814c42d32dd29784fa1ecb2ad54d0aab7841abac6b"
+  inputs-digest = "0cda5a51d2287524c8bed70a39355e8a45819241ca28e728bc4a0f722eb2931f"
   solver-name = "gps-cdcl"
   solver-version = 1

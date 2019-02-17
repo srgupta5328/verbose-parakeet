@@ -6,6 +6,7 @@ import (
 	"net/http"
 
 	"github.com/gorilla/mux"
+	scribble "github.com/nanobox-io/golang-scribble"
 )
 
 func Initialize() *mux.Router {
@@ -22,4 +23,14 @@ func Run() error {
 
 	return nil
 
+}
+
+func InitDB() error {
+	db, err := scribble.New("../test/employee.json", nil)
+	if err != nil {
+		fmt.Println(db)
+		fmt.Println("Error initializing the scribble db")
+	}
+
+	return nil
 }
