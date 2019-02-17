@@ -7,8 +7,8 @@ import (
 	uuid "github.com/satori/go.uuid"
 )
 
-func generateUUID() string {
-	uuid, _ := uuid.NewV1()
+func GenerateUUID() string {
+	uuid := uuid.NewV1()
 	id := uuid.String()
 	return id
 }

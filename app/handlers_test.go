@@ -1,17 +1,10 @@
-package main
+package app
 
 import (
 	"net/http"
 	"net/http/httptest"
 	"testing"
 )
-
-func TestInitialize(t *testing.T) {
-	testRouter := Initialize()
-	if testRouter == nil {
-		t.Errorf("Error: '%v', Router didn't initialize", testRouter)
-	}
-}
 
 func TestHomeHandler(t *testing.T) {
 	req, _ := http.NewRequest("GET", "http://localhost:8080/", nil)
