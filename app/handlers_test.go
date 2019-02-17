@@ -19,3 +19,15 @@ func TestHomeHandler(t *testing.T) {
 		t.Errorf("Got: '%s', Want: '%s'", got, want)
 	}
 }
+
+func TestReadEmployeeHandler(t *testing.T) {
+	t.Run("Reading the employee from the JSON file", func(t *testing.T) {
+		req, _ := http.NewRequest("GET", "http://localhost:8080/test/employee", nil)
+		res := httptest.NewRecorder()
+		ReadEmployeeHandler(res, req)
+
+		if res.Body.String() == "" {
+			t.Errorf("Error reading the JSON test employee")
+		}
+	})
+}

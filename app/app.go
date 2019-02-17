@@ -11,6 +11,7 @@ import (
 func Initialize() *mux.Router {
 	router := mux.NewRouter()
 	router.HandleFunc("/", HomeHandler).Methods("GET")
+	router.HandleFunc("/test/employee", ReadEmployeeHandler).Methods("GET")
 	return router
 }
 
