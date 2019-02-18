@@ -14,8 +14,14 @@ type Employee struct {
 	RoleName  string `json:"role_name,omitempty"`
 }
 
-func (e *Employee) createEmployee(db *scribble.Driver) error {
-	return errors.New("Not implemented yet")
+func (e *Employee) CreateEmployee(db *scribble.Driver) error {
+	employee := Employee{FirstName: "Rohan", LastName: "Gupta", ID: "1", Email: "TestEmail@gmail.dom", RoleName: "Software Engineer 1"}
+	err := db.Write("empolyees", employee.FirstName, Employee{FirstName: employee.FirstName})
+	if err != nil {
+		return errors.New("Not implemented yet")
+	}
+	return nil
+
 }
 
 func (e *Employee) updateEmployee(db *scribble.Driver) error {

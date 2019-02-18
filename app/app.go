@@ -27,7 +27,7 @@ func Run() error {
 }
 
 func InitDB() (*scribble.Driver, error) {
-	db, err := scribble.New("../test/employee.json", nil)
+	db, err := scribble.New("./employees", nil)
 	if err != nil {
 		fmt.Println("Error initializing the scribble db")
 	}
