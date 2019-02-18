@@ -1,14 +1,20 @@
 package app
 
 import (
+	"database/sql"
 	"fmt"
 	"log"
 	"net/http"
 
 	"github.com/gorilla/mux"
-	scribble "github.com/nanobox-io/golang-scribble"
+
 	"github.com/srgupta5328/verbose-parakeet/helpers"
 )
+
+type App struct {
+	DB     *sql.DB
+	router *mux.Router
+}
 
 func Initialize() *mux.Router {
 	router := mux.NewRouter()
@@ -17,20 +23,25 @@ func Initialize() *mux.Router {
 	return router
 }
 
-func Run() error {
-	router := Initialize()
+func InitDB(username, password, dbname string) *sql.DB {
+	connectionString :=
+		fmt.Sprintf("user=%s password=%s dbname=%s", username, password, dbname)
+
+	var err error
+	db, err := sql.Open("postgres", connectionString)
+	if err != nil {
+		log.Fatal(err)
+	}
+
+	return db
+}
+
+func (a *App) Run() error {
+	a.router = Initialize()
+	a.DB = InitDB(helpers.Username, helpers.Password, helpers.DbName)
 	fmt.Println("Running Service http://localhost:8080")
-	log.Fatal(http.ListenAndServe(":"+helpers.Port, router))
+	log.Fatal(http.ListenAndServe(":"+helpers.Port, a.router))
 
 	return nil
 
-}
-
-func InitDB() (*scribble.Driver, error) {
-	db, err := scribble.New("./employees", nil)
-	if err != nil {
-		fmt.Println("Error initializing the scribble db")
-	}
-
-	return db, nil
 }

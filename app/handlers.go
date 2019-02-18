@@ -21,9 +21,6 @@ func ReadEmployeeHandler(w http.ResponseWriter, r *http.Request) {
 }
 
 func CreateEmployeeHandler(w http.ResponseWriter, r *http.Request) {
-	e := model.Employee{}
-	db, _ := InitDB()
-	e.CreateEmployee(db)
 	w.Header().Set("Content-Type", "application/json")
 	w.WriteHeader(http.StatusCreated)
 
