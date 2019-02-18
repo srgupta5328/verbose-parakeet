@@ -13,7 +13,7 @@ func HomeHandler(w http.ResponseWriter, r *http.Request) {
 }
 
 func LatestListingHandler(w http.ResponseWriter, r *http.Request) {
-	url := helpers.SetBASE() + "/cryptocurrency/listings/latest"
+	url := helpers.BASE_URL + "/cryptocurrency/listings/latest"
 
 	req, _ := http.NewRequest("GET", url, nil)
 

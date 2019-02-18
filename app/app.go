@@ -21,6 +21,6 @@ func Initialize() *mux.Router {
 func Run() {
 	router := Initialize()
 	fmt.Println("Running Service http://localhost:8080")
-	log.Fatal(http.ListenAndServe(":"+helpers.SetPort(), router))
+	log.Fatal(http.ListenAndServe(":"+helpers.Port, router))
 
 }
