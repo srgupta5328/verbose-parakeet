@@ -1,27 +1,33 @@
 package app
 
 import (
-	"encoding/json"
 	"fmt"
+	"io/ioutil"
 	"net/http"
 
-	"github.com/srgupta5328/verbose-parakeet/model"
+	"github.com/srgupta5328/verbose-parakeet/helpers"
 )
 
 func HomeHandler(w http.ResponseWriter, r *http.Request) {
-	fmt.Fprintf(w, "Welcome to the Employee Catalog")
+	fmt.Fprintf(w, "Welcome to the Coin Market Application in Go")
 }
 
-func ReadEmployeeHandler(w http.ResponseWriter, r *http.Request) {
-	employee := model.Employee{FirstName: "Rohan", LastName: "Gupta", ID: "1", Email: "TestEmail@gmail.dom", RoleName: "Software Engineer 1"}
-	w.Header().Set("Content-Type", "application/json")
-	w.WriteHeader(http.StatusOK)
-	json.NewEncoder(w).Encode(employee)
+func LatestListingHandler(w http.ResponseWriter, r *http.Request) {
+	url := helpers.BASE_URL + "/cryptocurrency/listings/latest"
 
-}
+	req, _ := http.NewRequest("GET", url, nil)
 
-func CreateEmployeeHandler(w http.ResponseWriter, r *http.Request) {
-	w.Header().Set("Content-Type", "application/json")
-	w.WriteHeader(http.StatusCreated)
+	req.Header.Add("X-CMC_PRO_API_KEY", helpers.API)
 
+	res, err := http.DefaultClient.Do(req)
+	if err != nil {
+		fmt.Printf("Error executing the request: %s", err)
+	}
+
+	defer res.Body.Close()
+
+	body, _ := ioutil.ReadAll(res.Body)
+
+	helpers.RespondWithJson(w, 200, body)
+	fmt.Println(string(body))
 }

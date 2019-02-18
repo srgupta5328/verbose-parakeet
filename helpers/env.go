@@ -4,7 +4,6 @@ import "os"
 
 var (
 	Port     = os.Getenv("PORT")
-	Username = os.Getenv("POSTGRES_USERNAME")
-	Password = os.Getenv("POSTGRES_PASSWORD")
-	DbName   = os.Getenv("POSTGRES_DB_NAME")
+	API      = os.Getenv("COIN_API_KEY")
+	BASE_URL = os.Getenv("BASE_URL")
 )
