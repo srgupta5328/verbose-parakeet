@@ -34,5 +34,3 @@ func InitDB() (*scribble.Driver, error) {
 
 	return db, nil
 }
-
-//DynamoDB -> For production

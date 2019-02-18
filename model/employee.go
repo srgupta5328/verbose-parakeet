@@ -1,8 +1,9 @@
 package model
 
 import (
-	"database/sql"
 	"errors"
+
+	scribble "github.com/nanobox-io/golang-scribble"
 )
 
 type Employee struct {
@@ -13,18 +14,18 @@ type Employee struct {
 	RoleName  string `json:"role_name,omitempty"`
 }
 
-func (e *Employee) createEmployee(db *sql.DB) error {
+func (e *Employee) createEmployee(db *scribble.Driver) error {
 	return errors.New("Not implemented yet")
 }
 
-func (e *Employee) updateEmployee(db *sql.DB) error {
+func (e *Employee) updateEmployee(db *scribble.Driver) error {
 	return errors.New("Not implemented yet")
 }
 
-func (e *Employee) deleteEmployee(db *sql.DB) error {
+func (e *Employee) deleteEmployee(db *scribble.Driver) error {
 	return errors.New("Not implemented yet")
 }
 
-func (e *Employee) getEmployee(db *sql.DB) error {
+func (e *Employee) getEmployee(db *scribble.Driver) error {
 	return errors.New("Not implemented yet")
 }
