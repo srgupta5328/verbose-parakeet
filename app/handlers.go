@@ -3,7 +3,6 @@ package app
 import (
 	"encoding/json"
 	"fmt"
-	"io/ioutil"
 	"net/http"
 
 	"github.com/srgupta5328/verbose-parakeet/model"
@@ -14,10 +13,9 @@ func HomeHandler(w http.ResponseWriter, r *http.Request) {
 }
 
 func ReadEmployeeHandler(w http.ResponseWriter, r *http.Request) {
-	e := model.Employee{}
-	b, _ := ioutil.ReadFile("../test/employee.json")
-	json.Unmarshal(b, &e)
-	res, _ := json.Marshal(e)
-	w.Write(res)
+	employee := model.Employee{FirstName: "Rohan", LastName: "Gupta", ID: "1", Email: "TestEmail@gmail.dom", RoleName: "Software Engineer 1"}
+	w.Header().Set("Content-Type", "application/json")
+	w.WriteHeader(http.StatusOK)
+	json.NewEncoder(w).Encode(employee)
 
 }

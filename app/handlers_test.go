@@ -21,7 +21,7 @@ func TestHomeHandler(t *testing.T) {
 }
 
 func TestReadEmployeeHandler(t *testing.T) {
-	t.Run("Reading the employee from the JSON file", func(t *testing.T) {
+	t.Run("Reading the employee from memory", func(t *testing.T) {
 		req, _ := http.NewRequest("GET", "http://localhost:8080/test/employee", nil)
 		res := httptest.NewRecorder()
 		ReadEmployeeHandler(res, req)
