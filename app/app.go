@@ -8,6 +8,7 @@ import (
 
 	"github.com/gorilla/mux"
 
+	_ "github.com/lib/pq"
 	"github.com/srgupta5328/verbose-parakeet/helpers"
 )
 
@@ -36,12 +37,10 @@ func InitDB(username, password, dbname string) *sql.DB {
 	return db
 }
 
-func (a *App) Run() error {
+func (a *App) Run() {
 	a.router = Initialize()
 	a.DB = InitDB(helpers.Username, helpers.Password, helpers.DbName)
 	fmt.Println("Running Service http://localhost:8080")
 	log.Fatal(http.ListenAndServe(":"+helpers.Port, a.router))
-
-	return nil
 
 }
