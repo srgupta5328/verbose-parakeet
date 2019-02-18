@@ -13,7 +13,7 @@ func HomeHandler(w http.ResponseWriter, r *http.Request) {
 }
 
 func LatestListingHandler(w http.ResponseWriter, r *http.Request) {
-	url := helpers.BASE_URL + "/cryptocurrency/listings/latest"
+	url := helpers.SetBASE() + "/cryptocurrency/listings/latest"
 
 	req, _ := http.NewRequest("GET", url, nil)
 
@@ -28,6 +28,8 @@ func LatestListingHandler(w http.ResponseWriter, r *http.Request) {
 
 	body, _ := ioutil.ReadAll(res.Body)
 
-	helpers.RespondWithJson(w, 200, body)
-	fmt.Println(string(body))
+	w.Header().Set("Content-Type", "application/json")
+	w.WriteHeader(http.StatusOK)
+	w.Write(body)
+
 }
