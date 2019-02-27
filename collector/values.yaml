@@ -1,0 +1,9 @@
+image:
+  repository: srgupta5328/parakeet
+  tag: latest
+  pullPolicy: IfNotPresent
+service:
+  name: verbose-parakeet
+  type: LoadBalancer
+  externalPort: 80
+  internalPort: 8005
